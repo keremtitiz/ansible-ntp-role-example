@@ -1,0 +1,9 @@
+- name: Install Ntp to remote server 
+  hosts: ubuntuserver
+  gather_facts: yes
+  become: no
+
+  tasks:
+    - name: Ntp installer and config
+      import_role:
+        name: ntp

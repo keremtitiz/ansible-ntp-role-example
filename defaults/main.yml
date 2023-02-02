@@ -1,0 +1,4 @@
+---
+# defaults file for /etc/ansible/roles/ntp
+timezone: Europe/Istanbul
+ntp_server: 0.tr.pool.ntp.org

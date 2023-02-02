@@ -1,0 +1,18 @@
+---
+- name: Timezone change
+  template:
+    src: timezone
+    dest: /etc/timezone
+    owner: root
+    group: root
+  notify: reconfigure tzdata
+
+- name: Install ntp package
+  apt: pkg=ntp state=present
+
+- name: Start ntp package
+  service: name=ntp state=started enabled=true
+
+- name: set ntp server
+  lineinfile: dest=/etc/ntpsec/ntp.conf state=present regexp='^server ' line='server {{ ntp_server }} iburst'
+  notify: restart ntp
